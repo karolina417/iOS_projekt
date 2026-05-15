@@ -18,10 +18,15 @@ struct ContentView: View {
                 .tabItem {
                     Label("Quiz", systemImage: "questionmark")
                 }
+            DodajPostacView()
+                .tabItem{
+                    Label("Dodaj Postać", systemImage: "plus")
+                }
         }
     }
     
 }
 #Preview {
     ContentView()
+        .environment(\.managedObjectContext, PersistenceController.shared.container.viewContext)
 }
