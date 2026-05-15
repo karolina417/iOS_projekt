@@ -12,11 +12,12 @@ struct EncyklopediaView: View {
     var body: some View {
         NavigationView {
             List(postacie, id: \.self) { postac in
-                Text(postac.nazwa ?? "Brak nazwy")
+                NavigationLink(destination: SzczegolyView(postac: postac)) {
+                    Text(postac.nazwa ?? "Brak nazwy")
+                }
             }
             .navigationTitle("Wybierz postać")
         }
-        
     }
 }
 

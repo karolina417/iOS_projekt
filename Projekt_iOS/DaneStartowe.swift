@@ -19,7 +19,7 @@ struct DaneStartowe {
         // --- Atrybuty ---
         let moc1 = Atrybut(context: context)
         moc1.nazwa = "Moc"
-        moc1.wartosc = 95
+        moc1.wartosc = 2
         duch.addToAtrybuty(moc1)
         
         // --- Pytania ---
