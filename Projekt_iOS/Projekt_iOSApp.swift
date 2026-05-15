@@ -1,10 +1,3 @@
-//
-//  Projekt_iOSApp.swift
-//  Projekt_iOS
-//
-//  Created by Adam Sidor on 15/05/2026.
-//
-
 import SwiftUI
 import CoreData
 
