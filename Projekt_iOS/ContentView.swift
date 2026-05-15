@@ -18,10 +18,6 @@ struct ContentView: View {
                 .tabItem {
                     Label("Quiz", systemImage: "questionmark")
                 }
-            DodajPostacView()
-                .tabItem{
-                    Label("Dodaj Postać", systemImage: "plus")
-                }
         }
     }
     

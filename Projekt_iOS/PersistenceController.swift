@@ -12,6 +12,7 @@ struct PersistenceController {
                 fatalError("Core Data error: \(error)")
             }
         }
+        DaneStartowe.zaladuj(context: container.viewContext)
     }
     
     var context: NSManagedObjectContext {

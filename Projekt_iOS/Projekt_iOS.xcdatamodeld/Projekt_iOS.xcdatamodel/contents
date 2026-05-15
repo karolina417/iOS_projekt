@@ -3,17 +3,17 @@
     <entity name="Atrybut" representedClassName="Atrybut" syncable="YES" codeGenerationType="class">
         <attribute name="nazwa" optional="YES" attributeType="String"/>
         <attribute name="wartosc" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <relationship name="toPostac" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Postac" inverseName="toAtrybut" inverseEntity="Postac"/>
+        <relationship name="postac" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Postac" inverseName="atrybuty" inverseEntity="Postac"/>
     </entity>
     <entity name="Postac" representedClassName="Postac" syncable="YES" codeGenerationType="class">
         <attribute name="nazwa" optional="YES" attributeType="String"/>
         <attribute name="opis" optional="YES" attributeType="String"/>
         <attribute name="zdjecie" optional="YES" attributeType="String"/>
-        <relationship name="toAtrybut" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Atrybut" inverseName="toPostac" inverseEntity="Atrybut"/>
+        <relationship name="atrybuty" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Atrybut" inverseName="postac" inverseEntity="Atrybut"/>
     </entity>
     <entity name="Pytanie" representedClassName="Pytanie" syncable="YES" codeGenerationType="class">
-        <attribute name="odpowiedzi" optional="YES" attributeType="Transformable"/>
+        <attribute name="odpowiedzi" optional="YES" attributeType="Transformable" customClassName="[String]"/>
         <attribute name="poprawna" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="tresc" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="tresc" optional="YES" attributeType="String"/>
     </entity>
 </model>
