@@ -259,13 +259,13 @@ struct DaneStartowe {
         duch.zdjecie = "duch"
         duch.addToAtrybuty(sila0)
         duch.addToAtrybuty(moc0)
-        dzin.addToAtrybuty(szybkosc1)
-        dzin.addToAtrybuty(latanie3)
-        dzin.addToAtrybuty(woda3)
-        dzin.addToAtrybuty(slonce3)
-        dzin.addToAtrybuty(ksiezyc3)
-        dzin.addToAtrybuty(dl_zycia0)
-        dzin.addToAtrybuty(akt_nocna3)
+        duch.addToAtrybuty(szybkosc1)
+        duch.addToAtrybuty(latanie3)
+        duch.addToAtrybuty(woda3)
+        duch.addToAtrybuty(slonce3)
+        duch.addToAtrybuty(ksiezyc3)
+        duch.addToAtrybuty(dl_zycia0)
+        duch.addToAtrybuty(akt_nocna3)
         
         // --- Pytania ---
         let pytanie = Pytanie(context: context)
