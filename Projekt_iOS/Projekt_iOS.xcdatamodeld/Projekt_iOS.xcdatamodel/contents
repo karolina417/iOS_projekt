@@ -3,7 +3,7 @@
     <entity name="Atrybut" representedClassName="Atrybut" syncable="YES" codeGenerationType="class">
         <attribute name="nazwa" optional="YES" attributeType="String"/>
         <attribute name="wartosc" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <relationship name="postac" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Postac" inverseName="atrybuty" inverseEntity="Postac"/>
+        <relationship name="postac" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Postac" inverseName="atrybuty" inverseEntity="Postac"/>
     </entity>
     <entity name="Postac" representedClassName="Postac" syncable="YES" codeGenerationType="class">
         <attribute name="nazwa" optional="YES" attributeType="String"/>

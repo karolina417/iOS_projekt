@@ -21,7 +21,7 @@ struct PorownywarkaView: View {
                     Picker("Postać 1", selection: $postac1) {
                         Text("Wybierz").tag(Optional<Postac>(nil))
                         ForEach(postacie, id: \.self) { p in
-                            Text(p.nazwa ?? "").tag(Optional(p))
+                            Text(p.nazwa ?? "").tag(p)
                         }
                     }
                     .pickerStyle(.menu)
@@ -36,7 +36,7 @@ struct PorownywarkaView: View {
                     Picker("Postać 2", selection: $postac2) {
                         Text("Wybierz").tag(Optional<Postac>(nil))
                         ForEach(postacie, id: \.self) { p in
-                            Text(p.nazwa ?? "").tag(Optional(p))
+                            Text(p.nazwa ?? "").tag(p)
                         }
                     }
                     .pickerStyle(.menu)
@@ -48,17 +48,15 @@ struct PorownywarkaView: View {
                 .padding()
 
                 // Tabela
-                if postac1 != nil || postac2 != nil {
+                if postac1 != nil && postac2 != nil {
                     // Nagłówek
                     HStack {
                         Text("Atrybut")
                             .frame(maxWidth: .infinity, alignment: .leading)
                         Text(postac1?.nazwa ?? "-")
                             .frame(maxWidth: .infinity, alignment: .center)
-                            .foregroundColor(.blue)
                         Text(postac2?.nazwa ?? "-")
                             .frame(maxWidth: .infinity, alignment: .center)
-                            .foregroundColor(.red)
                     }
                     .font(.caption)
                     .bold()
@@ -69,20 +67,20 @@ struct PorownywarkaView: View {
                     Divider()
 
                     // Wiersze
-                    let wspolneAtrybuty = atrybutyWspolne()
-                    if wspolneAtrybuty.isEmpty {
+                    let wszystkieAtrybuty = atrybutySuma()
+                    if wszystkieAtrybuty.isEmpty {
                         Spacer()
                         Text("Brak wspólnych atrybutów")
                             .foregroundColor(.secondary)
                         Spacer()
                     } else {
-                        List(wspolneAtrybuty, id: \.self) { nazwa in
+                        List(wszystkieAtrybuty, id: \.self) { nazwa in
                             HStack {
                                 Text(nazwa)
                                     .frame(maxWidth: .infinity, alignment: .leading)
-                                gwiazdki(postac: postac1, atrybut: nazwa, kolor: .blue)
+                                gwiazdki(postac: postac1, atrybut: nazwa)
                                     .frame(maxWidth: .infinity, alignment: .center)
-                                gwiazdki(postac: postac2, atrybut: nazwa, kolor: .red)
+                                gwiazdki(postac: postac2, atrybut: nazwa)
                                     .frame(maxWidth: .infinity, alignment: .center)
                             }
                         }
@@ -101,14 +99,14 @@ struct PorownywarkaView: View {
 
     // Gwiazdki dla danej postaci i atrybutu
     @ViewBuilder
-    func gwiazdki(postac: Postac?, atrybut: String, kolor: Color) -> some View {
+    func gwiazdki(postac: Postac?, atrybut: String) -> some View {
         if let postac = postac,
            let atrybuty = postac.atrybuty as? Set<Atrybut>,
            let znaleziony = atrybuty.first(where: { $0.nazwa == atrybut }) {
             HStack(spacing: 2) {
                 ForEach(0..<3, id: \.self) { i in
                     Image(systemName: i < znaleziony.wartosc ? "star.fill" : "star")
-                        .foregroundColor(kolor)
+                        .foregroundColor(.yellow)
                         .font(.caption)
                 }
             }
@@ -117,8 +115,7 @@ struct PorownywarkaView: View {
         }
     }
 
-    // Nazwy atrybutów wspólne dla obu postaci (lub suma jeśli tylko jedna wybrana)
-    func atrybutyWspolne() -> [String] {
+    func atrybutySuma() -> [String] {
         var nazwy = Set<String>()
         if let p1 = postac1, let a1 = p1.atrybuty as? Set<Atrybut> {
             a1.forEach { nazwy.insert($0.nazwa ?? "") }
