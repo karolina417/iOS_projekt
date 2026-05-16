@@ -16,11 +16,6 @@ struct SzczegolyView: View {
                         .cornerRadius(12)
                 }
 
-                // Nazwa i opis
-                Text(postac.nazwa ?? "")
-                    .font(.largeTitle)
-                    .bold()
-
                 Text(postac.opis ?? "")
                     .font(.body)
                     .foregroundColor(.secondary)
@@ -43,6 +38,7 @@ struct SzczegolyView: View {
                     }
                 }
             }
+            .navigationTitle(postac.nazwa ?? "")
             .padding()
         }
     }

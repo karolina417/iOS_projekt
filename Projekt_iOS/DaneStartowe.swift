@@ -47,23 +47,28 @@ struct DaneStartowe {
         // --- Postacie ---
         let duch = Postac(context: context)
         duch.nazwa = "Duch"
-        duch.opis = "Straszny duch"
+        duch.opis = "Wygląd ducha zależy od sposobu jego śmierci – różne przyczyny nadają mu inne kolory. Duchy poruszają się, unosząc się nad ziemią, a ich głos ma charakterystyczne echo. Nie mogą ponownie umrzeć i są odporne wszystkie z zagrożeń. Potrafią przenikać przez ściany oraz manipulować obiektami, unosząc je i wprawiając w ruch. Ich aktywność ogranicza się do godzin nocnych – od 23:00 do 6:00."
         duch.zdjecie = "duch"
         duch.addToAtrybuty(sila0)
         duch.addToAtrybuty(moc0)
         
         let zombie = Postac(context: context)
         zombie.nazwa = "Zombie"
-        zombie.opis = "Straszny zombie"
+        zombie.opis = "Zombie to nieumarłe istoty, które pojawiają się podczas pełni księżyca, wychodząc z ziemi. Po jej zakończeniu wracają do swoich grobów. Poruszają się bardzo wolno i mają trudności z pokonywaniem przeszkód, takich jak schody. Są słabymi pływakami. Niszczą rośliny i wykazują silną potrzebę atakowania innych, szczególnie w celu „zjedzenia mózgu” i przy okazji zmiany zaatakowanego w zombie."
         zombie.zdjecie = "zombie"
         zombie.addToAtrybuty(sila1)
         zombie.addToAtrybuty(moc0)
         
         // --- Pytania ---
         let pytanie = Pytanie(context: context)
-        pytanie.tresc = "Jak straszny jest Duch?"
-        pytanie.odpowiedzi = ["Wcale", "Trochę", "Nawet straszny", "Śmiertelnie Straszny"]
-        pytanie.poprawna = 1
+        pytanie.tresc = "Na czyje samopoczucie oraz zachowanie żadna faza księżyca nie ma wpływu?"
+        pytanie.odpowiedzi = ["czarownicy", "wilkołaka", "wróżki", "zombie"]
+        pytanie.poprawna = 0
+        
+        let pytanie2 = Pytanie(context: context)
+        pytanie2.tresc = "Od czego zależy kolor ducha?"
+        pytanie2.odpowiedzi = ["fazy księżyca", "sposobu jego śmierci", "jego nastroju", "pogody"]
+        pytanie2.poprawna = 1
         
         try? context.save()
         print("✅ Dane startowe załadowane")

@@ -11,10 +11,21 @@ struct EncyklopediaView: View {
 
     var body: some View {
         NavigationView {
-            List(postacie, id: \.self) { postac in
-                NavigationLink(destination: SzczegolyView(postac: postac)) {
-                    Text(postac.nazwa ?? "Brak nazwy")
+            VStack{
+                Image("wszystkie")
+                    .resizable()
+                    .scaledToFit()
+                if postacie.isEmpty {
+                    Text("Brak postaci!")
+                }else{
+                    List(postacie, id: \.self) { postac in
+                        NavigationLink(destination: SzczegolyView(postac: postac)) {
+                            Text(postac.nazwa ?? "Brak nazwy")
+                        }
+                    }
+                    .listStyle(.plain)
                 }
+                
             }
             .navigationTitle("Wybierz postać")
         }
