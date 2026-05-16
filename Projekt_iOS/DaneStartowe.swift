@@ -158,7 +158,7 @@ struct DaneStartowe {
         let wrozka = Postac(context: context)
         wrozka.nazwa = "Wróżka"
         wrozka.opis = "Wróżki potrafią kurczyć się do swojego naturalnego, niewielkiego rozmiaru – wtedy przypominają lewitujące, świecące istoty. Posiadają skrzydła, dzięki którym mogą latać, choć często poruszają się również pieszo. Dysponują magią, którą wykorzystują m.in. do naprawy przedmiotów czy przywracania zombie do ludzkiej postaci. Ich moc magiczna ma jednak dzienny limit. Wróżki potrafią tworzyć unikalne aury wpływające na otoczenie, np. poprawiające nastrój innych postaci. Uwielbiają psoty i żarty – za pomocą magicznego pyłu mogą np. zmienić czyjeś ubranie lub wywołać uczucie zimna. Podczas nowiu księżyca czują się osłabione, natomiast w inne noce ich samopoczucie jest bardzo dobre. Starzeją się bardzo powoli."
-        wrozka.zdjecie = "wrozka"
+        wrozka.zdjecie = "wróżka"
         wrozka.addToAtrybuty(sila0)
         wrozka.addToAtrybuty(moc2)
         wrozka.addToAtrybuty(szybkosc1)
@@ -200,7 +200,7 @@ struct DaneStartowe {
         let wilkolak = Postac(context: context)
         wilkolak.nazwa = "Wilkołak"
         wilkolak.opis = "Wilkołaki na co dzień wyglądają podobnie do zwykłych osób, jednak można zauważyć u nich pewne charakterystyczne cechy, takie jak bardziej dziki wygląd czy wyostrzone rysy twarzy. Już od najmłodszych lat wykazują silne instynkty łowieckie. Podczas pełni księżyca przemieniają się w swoją wilczą formę. W tej postaci ich ciało pokrywa gęste owłosienie, pojawiają się spiczaste uszy, świecące oczy oraz wysunięta szczęka z widocznymi kłami. Poruszają się wtedy na czterech łapach, osiągając bardzo dużą prędkość, oraz charakteryzują się największą ze wszystkich siłą. Wilkołaki mogą zarażać innych swoją klątwą poprzez ugryzienie. Potrafią polować, wyć do księżyca oraz żywią się m.in. surowym mięsem i rybami."
-        wilkolak.zdjecie = "wilkolak"
+        wilkolak.zdjecie = "wilkołak"
         wilkolak.addToAtrybuty(sila3)
         wilkolak.addToAtrybuty(moc0)
         wilkolak.addToAtrybuty(szybkosc3)
@@ -242,7 +242,7 @@ struct DaneStartowe {
         let dzin = Postac(context: context)
         dzin.nazwa = "Dżin"
         dzin.opis = "Dżin to magiczna istota zamieszkująca starą, zakurzoną lampę - ten kto ją potrze zdobywa od niego trzy życzenia, które dżin spełni np. bogactwa, urody, długiego życia, wskrzeszenia kogoś, szczęścia, miłości czy większej ilości życzeń - zazwyczaj dostanie od niego jedno dodatkowe. Może lewitować oraz tego posiada wiele zdolności magicznych, takich jak ognioodporność, natychmiastowe sprzątanie, przywoływanie potrwa wysokiej jakości, znikanie czy kontrolowanie umysłów innych postaci."
-        dzin.zdjecie = "dzin"
+        dzin.zdjecie = "dżin"
         dzin.addToAtrybuty(sila2)
         dzin.addToAtrybuty(moc3)
         dzin.addToAtrybuty(szybkosc1)
