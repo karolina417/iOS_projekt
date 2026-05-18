@@ -32,7 +32,6 @@ struct SzczegolyView: View {
                             Spacer()
                             ForEach(0..<3, id: \.self) { i in
                                 Image(systemName: i < atrybut.wartosc ? "star.fill" : "star")
-                                    .foregroundColor(.yellow)
                             }
                         }
                     }

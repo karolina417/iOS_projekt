@@ -106,7 +106,6 @@ struct PorownywarkaView: View {
             HStack(spacing: 2) {
                 ForEach(0..<3, id: \.self) { i in
                     Image(systemName: i < znaleziony.wartosc ? "star.fill" : "star")
-                        .foregroundColor(.yellow)
                         .font(.caption)
                 }
             }
