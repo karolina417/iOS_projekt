@@ -35,7 +35,7 @@ struct QuizView: View {
             Spacer()
             Image(systemName: "questionmark.circle.fill")
                 .font(.system(size: 80))
-                .foregroundColor(.blue)
+                .foregroundColor(Color(red: 0.39, green: 0.19, blue: 0.35))
             Text("Sprawź swoją wiedzę")
                 .font(.title)
                 .bold()
@@ -51,7 +51,7 @@ struct QuizView: View {
                     .bold()
                     .frame(maxWidth: .infinity)
                     .padding()
-                    .background(Color.blue)
+                    .background(Color(red: 0.39, green: 0.19, blue: 0.35))
                     .foregroundColor(.white)
                     .cornerRadius(12)
                     .padding(.horizontal)
@@ -76,7 +76,7 @@ struct QuizView: View {
                         .bold()
                         .frame(maxWidth: .infinity)
                         .padding()
-                        .background(odpowiedzi.count == pytania.count ? Color.blue : Color.gray)
+                        .background(odpowiedzi.count == pytania.count ? Color(red: 0.39, green: 0.19, blue: 0.35) : Color.gray)
                         .foregroundColor(.white)
                         .cornerRadius(12)
                 }
@@ -166,14 +166,14 @@ struct QuizView: View {
 
     // MARK: - Helpers
     func kolorOpcji(indeks: Int, pytanie: Pytanie, j: Int) -> Color {
-        guard pokazWynik else { return odpowiedzi[indeks] == j ? .blue : .secondary }
+        guard pokazWynik else { return odpowiedzi[indeks] == j ? Color(red: 0.39, green: 0.19, blue: 0.35) : .secondary }
         if j == Int(pytanie.poprawna) { return .green }
         if odpowiedzi[indeks] == j { return .red }
         return .secondary
     }
 
     func kolorTlaOpcji(indeks: Int, pytanie: Pytanie, j: Int) -> Color {
-        guard pokazWynik else { return odpowiedzi[indeks] == j ? Color.blue.opacity(0.1) : Color(.tertiarySystemBackground) }
+        guard pokazWynik else { return odpowiedzi[indeks] == j ? Color(red: 0.39, green: 0.19, blue: 0.35).opacity(0.1) : Color(.tertiarySystemBackground) }
         if j == Int(pytanie.poprawna) { return Color.green.opacity(0.15) }
         if odpowiedzi[indeks] == j { return Color.red.opacity(0.15) }
         return Color(.tertiarySystemBackground)

@@ -18,7 +18,7 @@ struct ContentView: View {
                 .tabItem {
                     Label("Quiz", systemImage: "questionmark")
                 }
-        }
+        }.tint(Color(red: 0.39, green: 0.19, blue: 0.35))
     }
     
 }
