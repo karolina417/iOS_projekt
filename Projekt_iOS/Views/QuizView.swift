@@ -10,11 +10,13 @@ struct QuizView: View {
     ) var pytania: FetchedResults<Pytanie>
 
     @State private var started = false
+    @State private var iloscPytan: Int = 10
+    @State private var losowePytania: [Pytanie] = []
     @State private var odpowiedzi: [Int: Int] = [:]  // [indeksPytania: wybranaOdpowiedz]
     @State private var pokazWynik = false
 
     var punkty: Int {
-        pytania.enumerated().filter { i, pytanie in
+        losowePytania.enumerated().filter { i, pytanie in
             odpowiedzi[i] == Int(pytanie.poprawna)
         }.count
     }
@@ -36,18 +38,58 @@ struct QuizView: View {
             Image(systemName: "questionmark.circle.fill")
                 .font(.system(size: 80))
                 .foregroundColor(Color(red: 0.39, green: 0.19, blue: 0.35))
-            Text("Sprawź swoją wiedzę")
+            Text("Sprawdź swoją wiedzę")
                 .font(.title)
                 .bold()
-            Text("Liczba pytań: \(pytania.count)")
-                .foregroundColor(.secondary)
+
+            VStack(spacing: 12) {
+                Text("Liczba pytań w puli: \(pytania.count)")
+                    .foregroundColor(.secondary)
+
+                HStack {
+                    Text("Liczba pytań:")
+                    Spacer()
+                    TextField("5–\(pytania.count)", text: Binding(
+                        get: { String(iloscPytan) },
+                        set: {
+                            iloscPytan = Int($0) ?? 5
+                            if iloscPytan > pytania.count {
+                                iloscPytan = pytania.count
+                            }
+                            if iloscPytan < 5 {
+                                iloscPytan = 5
+                            }
+                        }
+                    ))
+                        .keyboardType(.numberPad)
+                        .multilineTextAlignment(.center)
+                        .frame(width: 60)
+                        .padding(8)
+                        .background(Color(.secondarySystemBackground))
+                        .cornerRadius(8)
+                }
+                .padding(.horizontal)
+                // Suwak jako alternatywa
+                Slider(
+                    value: Binding(
+                        get: { Double(iloscPytan) },
+                        set: { iloscPytan = Int($0) }
+                    ),
+                    in: 5...Double(max(pytania.count, 5)),
+                    step: 1
+                )
+                .padding(.horizontal)
+                .tint(Color(red: 0.39, green: 0.19, blue: 0.35))
+            }
+
             Spacer()
             Button {
                 odpowiedzi = [:]
                 pokazWynik = false
+                losowePytania = Array(pytania.shuffled().prefix(iloscPytan))
                 started = true
             } label: {
-                Text("Rozpocznij")
+                Text("Rozpocznij (\(iloscPytan) pytań)")
                     .bold()
                     .frame(maxWidth: .infinity)
                     .padding()
@@ -56,6 +98,7 @@ struct QuizView: View {
                     .cornerRadius(12)
                     .padding(.horizontal)
             }
+            .disabled(pytania.isEmpty)
         }
         .navigationTitle("Quiz")
     }
@@ -64,11 +107,10 @@ struct QuizView: View {
     var quizView: some View {
         ScrollView {
             VStack(spacing: 24) {
-                ForEach(Array(pytania.enumerated()), id: \.offset) { i, pytanie in
+                ForEach(Array(losowePytania.enumerated()), id: \.offset) { i, pytanie in
                     kafelekPytania(indeks: i, pytanie: pytanie)
                 }
 
-                // Przycisk sprawdź
                 Button {
                     pokazWynik = true
                 } label: {
@@ -76,11 +118,11 @@ struct QuizView: View {
                         .bold()
                         .frame(maxWidth: .infinity)
                         .padding()
-                        .background(odpowiedzi.count == pytania.count ? Color(red: 0.39, green: 0.19, blue: 0.35) : Color.gray)
+                        .background(odpowiedzi.count == losowePytania.count ? Color(red: 0.39, green: 0.19, blue: 0.35) : Color.gray)
                         .foregroundColor(.white)
                         .cornerRadius(12)
                 }
-                .disabled(odpowiedzi.count < pytania.count)
+                .disabled(odpowiedzi.count < losowePytania.count)
                 .padding(.horizontal)
 
                 if pokazWynik {
@@ -146,7 +188,7 @@ struct QuizView: View {
         VStack(spacing: 8) {
             Text("Twój wynik")
                 .font(.headline)
-            Text("\(punkty) / \(pytania.count)")
+            Text("\(punkty) / \(losowePytania.count)")
                 .font(.system(size: 48, weight: .bold))
                 .foregroundColor(kolorWyniku)
             Text(opisWyniku)
@@ -154,6 +196,7 @@ struct QuizView: View {
             Button("Zagraj ponownie") {
                 odpowiedzi = [:]
                 pokazWynik = false
+                losowePytania = Array(pytania.shuffled().prefix(10))
             }
             .padding(.top, 8)
         }
@@ -180,14 +223,14 @@ struct QuizView: View {
     }
 
     var kolorWyniku: Color {
-        let procent = Double(punkty) / Double(pytania.count)
+        let procent = Double(punkty) / Double(losowePytania.count)
         if procent >= 0.8 { return .green }
         if procent >= 0.5 { return .blue }
         return .red
     }
 
     var opisWyniku: String {
-        let procent = Double(punkty) / Double(pytania.count)
+        let procent = Double(punkty) / Double(losowePytania.count)
         if procent >= 0.8 { return "Świetny wynik!" }
         if procent >= 0.5 { return "Nieźle!" }
         return "Spróbuj jeszcze raz"
